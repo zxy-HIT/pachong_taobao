@@ -3,6 +3,10 @@ from selenium.webdriver.common.keys import Keys
 import time
 import os
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+
 print('\n')
 print('Welcome to use the Swimming booking Script \n')
 print('The author is Xinyang Zhao \n')
@@ -22,7 +26,8 @@ elif timeStage == 2:
     todayStage = "/html/body/div[1]/div[1]/main/div/div/div[4]/div[1]/div[1]/div/div[2]/div[2]/div[3]/button[1]"
 elif timeStage == 3:
     todayStage = "/html/body/div[1]/div[1]/main/div/div/div[4]/div[1]/div[1]/div/div[2]/div[3]/div[3]/button[2]"
-driver = webdriver.Chrome()
+
+driver = webdriver.Chrome(chrome_options=chrome_options)
 driver.get(url1)
 
 time.sleep(1)
