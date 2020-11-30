@@ -5,7 +5,7 @@ import os
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-gpu')
+# chrome_options.add_argument('--disable-gpu')
 
 print('\n')
 print('Welcome to use the Swimming booking Script \n')
@@ -16,8 +16,11 @@ login = ".//button[@type='submit' and @class='auth_login_btn primary full_width'
 swimming = "/html/body/div[1]/div/main/div/div/div[2]/div/div[6]/div"
 todayStage = "/html/body/div[1]/div[1]/main/div/div/div[4]/div[1]/div[1]/div/div[2]/div[3]/div[3]/button[2]"
 
-userid = input("Please input your student ID: \n")
-passwd = input("Please input your student Password: \n")
+# userid = input("Please input your student ID: \n")
+# passwd = input("Please input your student Password: \n")
+userid = '17b904014'
+passwd = '123Zxy456@'
+
 timeStage = input("Which time do you want to swim?\n Please input the number:\n 1 for Morning\n 2 for Afternoon\n 3 for Night ?\n")
 
 if timeStage == 1:
@@ -39,15 +42,19 @@ print('Input password Success!')
 driver.find_element_by_xpath(login).click()
 print('Login in Success!')
 driver.find_element_by_xpath(swimming).click()
-time.sleep(2)
+time.sleep(3)
 driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/div/div[3]/button/span").click()
 time.sleep(1)
 print(driver.find_element_by_xpath("/html/body/div[1]/div[1]/main/div/div/div[4]/div[1]/div[1]/div/div[2]/div[3]/div[2]").get_attribute('innerHTML'))
 print('Try to find swimming opportunity for you! My Boss!')
-for i in range(50):
-    time.sleep(0.5)
+for i in range(100000):
+    time.sleep(1)
     driver.find_element_by_xpath(todayStage).click()
     print('Try to catch, Times: ', i)
     print(driver.find_element_by_xpath("/html/body/div[1]/div[1]/main/div/div/div[4]/div[1]/div[1]/div/div[2]/div[3]/div[2]").get_attribute('innerHTML'))
+    driver.refresh()
+    driver.find_element_by_xpath(swimming).click()
+    time.sleep(3)
+    driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/div/div[3]/button/span").click()
 
 # browser.save_screenshot(browser.title+".png")
